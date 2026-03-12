@@ -49,8 +49,8 @@ const AdminTemplate = () => {
             <div className='logo'>
               <div
                 className="font-bold text-xl lg:text-2xl text-blue-500 tracking-wide cursor-pointer transition-transform hover:scale-105 active:scale-95"
-                onClick={() => handleNavigate("/")} // CẬP NHẬT
-                onKeyPress={(e) => e.key === "Enter" && handleNavigate("/")} // CẬP NHẬT
+                onClick={() => navigate("/")} // CẬP NHẬT
+                onKeyPress={(e) => e.key === "Enter" && navigate("/")} // CẬP NHẬT
                 tabIndex={0}
                 role="button"
                 aria-label="Trang chủ"

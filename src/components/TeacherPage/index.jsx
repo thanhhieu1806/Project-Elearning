@@ -115,7 +115,7 @@ const TeacherPage = () => {
                     </p>
 
                     {/* Stats Overview */}
-                    <div className="flex justify-center gap-8 mt-8">
+                    <div className="flex flex-wrap justify-center gap-8 mt-8">
                         <div className="text-center">
                             <div className="text-3xl font-bold text-blue-600">50+</div>
                             <div className="text-gray-600">Khoá học</div>

@@ -160,7 +160,7 @@ const HeaderPages = () => {
             </div>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex gap-6 items-center font-medium text-gray-700">
+            <nav className="hidden lg:flex gap-6 items-center font-medium text-gray-700">
                 {[
                     { path: "/", label: "Trang chủ", icon: "🏠" },
                     { path: "/blog", label: "Blog", icon: "📝" },
@@ -265,7 +265,7 @@ const HeaderPages = () => {
             </nav>
 
             {/* Search + User Section */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
                 {/* Search với kết quả tìm kiếm */}
                 <div ref={searchRef} className="relative">
                     <div className="relative">
@@ -409,7 +409,7 @@ const HeaderPages = () => {
 
             {/* Mobile menu button với animation */}
             <button
-                className="md:hidden text-2xl p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                className="lg:hidden text-2xl p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Menu"
             >

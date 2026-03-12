@@ -59,7 +59,7 @@ const Listcourse = () => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="flex overflow-x-auto pb-4 lg:grid lg:grid-cols-4 gap-8 lg:pb-0 scroll-smooth no-scrollbar">
           {paginatedCourses?.map((course) => (
             <Card
               onClick={() => handleCourseDetailPage(course.maKhoaHoc)}
@@ -81,7 +81,7 @@ const Listcourse = () => {
                   </span>
                 </div>
               }
-              className="rounded-xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+              className="rounded-xl overflow-hidden bg-white border border-gray-200 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex-shrink-0 w-[280px] sm:w-[300px] lg:w-auto"
             >
               <div className="p-5">
                 <Meta
@@ -127,59 +127,60 @@ const Listcourse = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-10 space-x-2">
+          <div className="flex justify-center items-center mt-12 gap-2 select-none">
             {/* Prev */}
             <button
               onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
               disabled={currentPage === 1}
-              className="px-3 py-1 border rounded-md text-sm text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 shadow-sm"
             >
-              Prev
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
 
-            {/* Page Numbers (rút gọn) */}
-            {Array.from({ length: totalPages }).map((_, i) => {
-              const page = i + 1;
-              // chỉ hiện trang đầu, cuối, current, và 1 trang lân cận
-              if (
-                page === 1 ||
-                page === totalPages ||
-                Math.abs(currentPage - page) <= 1
-              ) {
-                return (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 border rounded-md text-sm transition ${currentPage === page
-                        ? "bg-indigo-600 text-white border-indigo-600"
-                        : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                  >
-                    {page}
-                  </button>
-                );
-              }
-              // dấu "..."
-              if (
-                page === currentPage - 2 ||
-                page === currentPage + 2
-              ) {
-                return (
-                  <span key={page} className="px-2 text-gray-500">
-                    ...
-                  </span>
-                );
-              }
-              return null;
-            })}
+            {/* Page Numbers */}
+            <div className="flex items-center gap-1">
+              {Array.from({ length: totalPages }).map((_, i) => {
+                const page = i + 1;
+                if (
+                  page === 1 ||
+                  page === totalPages ||
+                  (page >= currentPage - 1 && page <= currentPage + 1)
+                ) {
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`w-10 h-10 flex items-center justify-center rounded-full text-sm font-semibold transition-all duration-300 ${currentPage === page
+                          ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200 translate-y-[-2px]"
+                          : "text-gray-600 hover:bg-indigo-50 hover:text-indigo-600"
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                }
+                if (page === currentPage - 2 || page === currentPage + 2) {
+                  return (
+                    <span key={page} className="w-8 text-center text-gray-400 font-bold">
+                      ...
+                    </span>
+                  );
+                }
+                return null;
+              })}
+            </div>
 
             {/* Next */}
             <button
               onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 border rounded-md text-sm text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 shadow-sm"
             >
-              Next
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         )}
